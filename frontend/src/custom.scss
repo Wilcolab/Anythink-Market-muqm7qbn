@@ -72,3 +72,16 @@ body {
     color: #f2f2f2;
   }
 } 
+
+.empty-message {
+  padding: 20px 40px;
+  color: $body-color;
+  background: rgba($body-color, 0.1);
+  text-align: center;
+  margin: 20px auto;
+  width: fit-content;
+
+  span {
+    font-weight: 700;
+  }
+}

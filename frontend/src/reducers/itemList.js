@@ -44,6 +44,7 @@ const reducer = (state = {}, action) => {
         items: action.payload.items,
         itemsCount: action.payload.itemsCount,
         tab: null,
+        query: null,
         tag: action.tag,
         currentPage: 0,
       };
@@ -54,6 +55,7 @@ const reducer = (state = {}, action) => {
         items: action.payload.items,
         itemsCount: action.payload.itemsCount,
         tab: null,
+        tag: null,
         query: action.query,
         currentPage: 0,
       }
@@ -78,6 +80,7 @@ const reducer = (state = {}, action) => {
         tab: action.tab,
         currentPage: 0,
         tag: null,
+        query: null,
       };
     case PROFILE_PAGE_LOADED:
     case PROFILE_FAVORITES_PAGE_LOADED:
