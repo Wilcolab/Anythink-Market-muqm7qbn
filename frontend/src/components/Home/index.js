@@ -15,6 +15,8 @@ const Promise = global.Promise;
 
 const mapStateToProps = (state) => ({
   ...state.home,
+  query: state.itemList.query,
+  itemsCount: state.itemList.itemsCount,
   appName: state.common.appName,
   token: state.common.token,
 });
@@ -28,6 +30,14 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload }),
   onUnload: () => dispatch({ type: HOME_PAGE_UNLOADED }),
 });
+
+const Empty = (props) => {
+  return (
+    <div id="empty" className="empty-message">
+      No items found for <span>'{props.query}'</span>
+    </div>
+  )
+};
 
 class Home extends React.Component {
   componentWillMount() {
@@ -52,7 +62,11 @@ class Home extends React.Component {
 
         <div className="container page">
           <Tags tags={this.props.tags} onClickTag={this.props.onClickTag} />
-          <MainView />
+          {this.props.query && this.props.itemsCount === 0 ? (
+            <Empty query={this.props.query}/>
+          ) : (
+            <MainView />
+          )}
         </div>
       </div>
     );

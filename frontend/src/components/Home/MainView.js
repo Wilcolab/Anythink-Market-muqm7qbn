@@ -72,13 +72,7 @@ const SearchFilterTab = (props) => {
   );
 };
 
-const Empty = (props) => {
-  return (
-    <div id="empty" className="empty-message">
-      No items found for <span>'{props.query}'</span>
-    </div>
-  )
-};
+
 
 const mapStateToProps = (state) => ({
   ...state.itemList,
@@ -110,17 +104,13 @@ const MainView = (props) => {
         </ul>
       </div>
 
-      {props.query && props.items.length === 0 ? (
-        <Empty query={props.query}/>
-      ) : (
-        <ItemList
-          pager={props.pager}
-          items={props.items}
-          loading={props.loading}
-          itemsCount={props.itemsCount}
-          currentPage={props.currentPage}
-        />
-      )}
+      <ItemList
+        pager={props.pager}
+        items={props.items}
+        loading={props.loading}
+        itemsCount={props.itemsCount}
+        currentPage={props.currentPage}
+      />
     </div>
   );
 };
