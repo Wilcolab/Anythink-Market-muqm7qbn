@@ -8,15 +8,12 @@ import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
   APPLY_TAG_FILTER,
-  SEARCH_ITEMS,
 } from "../../constants/actionTypes";
 
 const Promise = global.Promise;
 
 const mapStateToProps = (state) => ({
   ...state.home,
-  query: state.itemList.query,
-  itemsCount: state.itemList.itemsCount,
   appName: state.common.appName,
   token: state.common.token,
 });
@@ -24,20 +21,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onClickTag: (tag, pager, payload) =>
     dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload }),
-  onSearchChange: (query, pager, payload) => 
-    dispatch({ type: SEARCH_ITEMS, query, pager, payload }), 
   onLoad: (tab, pager, payload) =>
     dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload }),
   onUnload: () => dispatch({ type: HOME_PAGE_UNLOADED }),
 });
-
-const Empty = (props) => {
-  return (
-    <div id="empty" className="empty-message">
-      No items found for <span>'{props.query}'</span>
-    </div>
-  )
-};
 
 class Home extends React.Component {
   componentWillMount() {
@@ -58,15 +45,11 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home-page">
-        <Banner onSearchChange={this.props.onSearchChange} />
+        <Banner />
 
         <div className="container page">
           <Tags tags={this.props.tags} onClickTag={this.props.onClickTag} />
-          {this.props.query && this.props.itemsCount === 0 ? (
-            <Empty query={this.props.query}/>
-          ) : (
-            <MainView />
-          )}
+          <MainView />
         </div>
       </div>
     );

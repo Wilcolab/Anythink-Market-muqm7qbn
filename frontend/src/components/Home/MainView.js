@@ -58,22 +58,6 @@ const TagFilterTab = (props) => {
   );
 };
 
-const SearchFilterTab = (props) => {
-  if (!props.query) {
-    return null;
-  }
-
-  return (
-    <li className="nav-item">
-      <button type="button" className="nav-link active">
-        {props.query}
-      </button>
-    </li>
-  );
-};
-
-
-
 const mapStateToProps = (state) => ({
   ...state.itemList,
   tags: state.home.tags,
@@ -99,8 +83,6 @@ const MainView = (props) => {
           <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
 
           <TagFilterTab tag={props.tag} />
-
-          <SearchFilterTab query={props.query} />
         </ul>
       </div>
 

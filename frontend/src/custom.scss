@@ -59,29 +59,3 @@ body {
 .user-info {
   min-width: 800px;
 }
-
-.search-box {
-  margin: 0 10px;
-  font-size: 20px;
-  border-radius: 6px; 
-  padding: 10px;
-  min-width: 400px;
-  border: 1px solid $input-border-color;
-
-  ::placeholder {
-    color: #f2f2f2;
-  }
-} 
-
-.empty-message {
-  padding: 20px 40px;
-  color: $body-color;
-  background: rgba($body-color, 0.1);
-  text-align: center;
-  margin: 20px auto;
-  width: fit-content;
-
-  span {
-    font-weight: 700;
-  }
-}
