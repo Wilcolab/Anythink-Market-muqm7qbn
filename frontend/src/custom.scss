@@ -59,3 +59,16 @@ body {
 .user-info {
   min-width: 800px;
 }
+
+.search-box {
+  margin: 0 10px;
+  font-size: 20px;
+  border-radius: 6px; 
+  padding: 10px;
+  min-width: 400px;
+  border: 1px solid $input-border-color;
+
+  ::placeholder {
+    color: #f2f2f2;
+  }
+} 
