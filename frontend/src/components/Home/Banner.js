@@ -16,7 +16,7 @@ const Banner = (props) => {
             className="search-box"
             placeholder="What is it that you truly desire?"
             onChange={(ev) => {
-              if (ev.target.value.length > 3) {
+              if (ev.target.value.length >= 3) {
                 props.onSearchChange(
                   ev.target.value,
                   (page) => agent.Items.bySearch(ev.target.value, page),

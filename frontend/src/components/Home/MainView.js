@@ -72,6 +72,8 @@ const SearchFilterTab = (props) => {
   );
 };
 
+
+
 const mapStateToProps = (state) => ({
   ...state.itemList,
   tags: state.home.tags,
