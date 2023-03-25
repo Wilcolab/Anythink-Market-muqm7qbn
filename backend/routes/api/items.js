@@ -5,6 +5,7 @@ var Comment = mongoose.model("Comment");
 var User = mongoose.model("User");
 var auth = require("../auth");
 const { sendEvent } = require("../../lib/event");
+const { createImage } = require("../../lib/dall_e");
 
 // Preload item objects on routes with ':item'
 router.param("item", function(req, res, next, slug) {
@@ -139,13 +140,19 @@ router.get("/feed", auth.required, function(req, res, next) {
 
 router.post("/", auth.required, function(req, res, next) {
   User.findById(req.payload.id)
-    .then(function(user) {
+    .then(async function(user) {
       if (!user) {
         return res.sendStatus(401);
       }
 
       var item = new Item(req.body.item);
+      let itemPic = item.image;
+      if (!itemPic) {
+        const imageResult = await createImage(item.title, "256x256");
+        itemPic = imageResult.data[0]?.url;
+      }
 
+      item.image = itemPic;
       item.seller = user;
 
       return item.save().then(function() {
