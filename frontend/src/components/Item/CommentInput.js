@@ -13,7 +13,7 @@ const CommentInput = (props) => {
   const createComment = async (ev) => {
     ev.preventDefault();
     agent.Comments.create(props.slug, {
-      body: state.body,
+      body,
     }).then((payload) => {
       props.onSubmit(payload);
     });
